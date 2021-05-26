@@ -1,0 +1,16 @@
+.SearchBox {
+  padding: 34px;
+  display: flex;
+  justify-content: center;
+
+  input {
+    width: 776px;
+    padding: 20px 16px;
+    font-size: 26px;
+    border: 1px solid #000000;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
