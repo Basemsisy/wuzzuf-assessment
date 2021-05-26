@@ -6,6 +6,7 @@ const appRoutes = [
   {
     path: "/",
     component: Home,
+    exact: true,
   },
 ];
 

@@ -1,0 +1,20 @@
+.Header {
+  background-color: #fff;
+  .Nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 25px 18px;
+    align-items: center;
+    box-shadow: 0px 1px 5px 0px #ddd;
+    ul {
+      list-style: none;
+      display: flex;
+      li {
+        font-size: 14px;
+        font-weight: 400px;
+        text-transform: capitalize;
+        margin-inline-end: 24px;
+      }
+    }
+  }
+}
