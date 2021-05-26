@@ -1,0 +1,28 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Roboto;
+  background-color: #e5e5e5;
+}
+
+h5 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+a,
+a:active,
+a:link {
+  color: #000;
+  text-decoration: none;
+}
+
+a.active {
+  border-bottom: 1px solid #000;
+}
