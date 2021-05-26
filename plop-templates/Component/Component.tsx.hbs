@@ -1,0 +1,16 @@
+import React, { FunctionComponent } from "react";
+import styles from "./{{pascalCase compName}}.module.scss";
+
+interface Props {
+
+}
+
+const {{pascalCase compName}}: FunctionComponent<Props> = ({ ...props }) => {
+  return (
+    <div className={ styles.{{pascalCase compName}} }>
+      {{compName}}
+    </div>
+  );
+};
+
+export default {{pascalCase compName}};
