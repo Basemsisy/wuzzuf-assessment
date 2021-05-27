@@ -1,2 +1,3 @@
 export const GET_ALL_JOBS = "GET_ALL_JOBS";
 export const GET_RELATED_SKILLS = "GET_RELATED_SKILLS";
+export const GET_SKILL_DETAILS = "GET_SKILL_DETAILS";

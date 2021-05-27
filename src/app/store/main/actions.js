@@ -12,9 +12,15 @@ export const getJobRelatedSkills = (jopId) => ({
   type: T.GET_RELATED_SKILLS,
   request: {
     url: `jobs/${jopId}/related_skills`,
-    params: { limit: 2 },
   },
   meta: {
     takeLatest: false,
+  },
+});
+
+export const getSkillDetails = (skillId) => ({
+  type: T.GET_SKILL_DETAILS,
+  request: {
+    url: `skills/${skillId}/related_jobs`,
   },
 });
