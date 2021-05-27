@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent } from "react";
 import RelatedCard from "app/components/RelatedCard";
 import { getJobRelatedSkills } from "app/store/main/actions";
-import { useDispatch } from "react-redux";
 import styles from "./Job.module.scss";
+import Sppinner from "app/components/Sppinner";
+import useAction from "app/hooks/useAction";
 
 interface Props {
   match: { params: { id: string } };
@@ -13,31 +14,17 @@ const Job: FunctionComponent<Props> = ({
     params: { id },
   },
 }) => {
-  const [skills, setSkills] = useState<null | any[]>(null);
+  const { isLoading, data: jobDetails } = useAction(getJobRelatedSkills, id)
 
-  const dispatch: any = useDispatch();
-  const loadRelatedSkills = async () => {
-    const result = await dispatch(getJobRelatedSkills(id));
-
-    setSkills(result.data.skills);
-  };
-  useEffect(() => {
-    loadRelatedSkills();
-  }, []);
+  if (isLoading) return <Sppinner />
   return (
     <div className={styles.Job}>
-      <div className="container">
-        <h4>4th Grade Math Teacher</h4>
-        <div className={styles.RelatedWrapper}>
-          <h5>related skills:</h5>
-          {skills &&
-            skills.map(({ skill_uuid, skill_name, description }) => (
-              <RelatedCard
-                key={skill_uuid}
-                data={{ title: skill_name, description }}
-              />
-            ))}
-        </div>
+      <h4>{jobDetails?.job_title}</h4>
+      <div className={styles.RelatedWrapper}>
+        <h5>related skills:</h5>
+        {jobDetails?.skills?.map((skill: any) => (
+          <RelatedCard key={skill.skill_uuid} type="skill" data={skill} />
+        ))}
       </div>
     </div>
   );
