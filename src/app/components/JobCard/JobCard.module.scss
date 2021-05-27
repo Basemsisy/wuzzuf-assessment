@@ -1,0 +1,31 @@
+.JobCard {
+  background-color: #fff;
+  padding: 37px 42px 23px;
+  font-size: 18px;
+  line-height: 25px;
+
+  h5 {
+    margin-bottom: 16px;
+  }
+
+  .Tags {
+    margin-bottom: 30px;
+    &__Title {
+      display: block;
+      text-transform: capitalize;
+      margin-bottom: 13px;
+    }
+
+    &__Item {
+      background-color: #c4c4c4;
+      padding: 6px 12px;
+      border-radius: 5px;
+      margin: 10px 7px 0 0;
+      display: inline-block;
+    }
+  }
+  a {
+    text-transform: capitalize;
+    text-decoration: underline;
+  }
+}
