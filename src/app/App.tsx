@@ -8,11 +8,13 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Switch>
-        {appRoutes.map(route => {
-          return <Route key={route.path} exact={route.exact} path={route.path} component={route.component} />
-        })}
-      </Switch>
+      <div className="container">
+        <Switch>
+          {appRoutes.map(route => {
+            return <Route key={route.path} exact={route.exact} path={route.path} component={route.component} />
+          })}
+        </Switch>
+      </div>
     </div>
   );
 }
