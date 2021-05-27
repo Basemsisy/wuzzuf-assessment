@@ -7,3 +7,14 @@ export const getAllJobs = (params) => ({
     params,
   },
 });
+
+export const getJobRelatedSkills = (jopId) => ({
+  type: T.GET_RELATED_SKILLS,
+  request: {
+    url: `jobs/${jopId}/related_skills`,
+    params: { limit: 2 },
+  },
+  meta: {
+    takeLatest: false,
+  },
+});
