@@ -3,6 +3,7 @@ import styles from "./Home.module.scss";
 import JobCard from "app/components/JobCard";
 import { useDispatch } from "react-redux";
 import { getAllJobs } from "app/store/main/actions";
+import Sppinner from "app/components/Sppinner";
 
 const Home = ({ ...props }) => {
   const dispatch: any = useDispatch();
@@ -14,7 +15,7 @@ const Home = ({ ...props }) => {
       result.data.pop();
       setJobs(result.data);
     } catch (error) {
-      console.log(error);
+
       setJobs([]);
     }
   };
@@ -22,7 +23,7 @@ const Home = ({ ...props }) => {
     loadData();
   }, []);
 
-  if (!jobs) return <div> 'loading...'</div>;
+  if (!jobs) return <Sppinner />;
   return (
     <div className={styles.Home}>
       <div className="container">
