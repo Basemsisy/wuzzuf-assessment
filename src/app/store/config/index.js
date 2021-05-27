@@ -1,23 +1,20 @@
 import { handleRequests } from "@redux-requests/core";
-import { createDriver } from "@redux-requests/axios";
+import { createDriver } from "@redux-requests/axios"; // or another driver
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { httpDriver } from "../../utils/httpDriver";
-import { createStore, applyMiddleware } from "redux";
-import { onRequest, onSuccess, onError } from "./interceptors";
-import { composeEnhancers, middlewares } from "./config";
-import reducers from "./rootReducer";
 
-export const configureStore = () => {
-  handleRequests({
+const configureStore = () => {
+  const { requestsReducer, requestsMiddleware } = handleRequests({
     driver: createDriver(httpDriver),
-    onRequest: onRequest,
-    onSuccess: onSuccess,
-    onError: onError,
   });
 
-  const store = createStore(
-    reducers,
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
+  const reducers = combineReducers({
+    requests: requestsReducer,
+  });
 
-  return { store };
+  const store = createStore(reducers, applyMiddleware(...requestsMiddleware));
+
+  return store;
 };
+
+export const store = configureStore();
