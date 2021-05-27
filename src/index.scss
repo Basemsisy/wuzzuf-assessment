@@ -11,8 +11,12 @@ body {
   background-color: #e5e5e5;
 }
 
+h4 {
+  font-size: 48px;
+  margin-bottom: 57px;
+}
+
 h5 {
-  font-weight: 700;
   font-size: 24px;
 }
 
@@ -25,4 +29,17 @@ a:link {
 
 a.active {
   border-bottom: 1px solid #000;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  @media (min-width: 501px) {
+    grid-template-columns: repeat(2, 12fr);
+  }
+  grid-gap: 43px 33px;
 }
