@@ -1,0 +1,23 @@
+.Sidebar {
+  padding: 25px 10px;
+
+  @media (min-width: 768px) {
+    padding: 25px;
+  }
+
+  background-color: #d9d9d9;
+  text-transform: capitalize;
+  height: fit-content;
+  ul {
+    padding: 25px;
+    li {
+      &:not(:last-child) {
+        margin-bottom: 17px;
+      }
+      font-size: 18px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
