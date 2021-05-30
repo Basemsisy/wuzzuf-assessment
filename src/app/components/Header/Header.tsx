@@ -14,7 +14,7 @@ const Header: FunctionComponent<Props> = ({ ...props }) => {
         </Link>
         <ul>
           <li>
-            <NavLink to="/">home</NavLink>
+            <NavLink exact to="/">home</NavLink>
           </li>
 
           <li>
