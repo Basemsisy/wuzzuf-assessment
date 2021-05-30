@@ -4,14 +4,18 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./app/App";
 import { Provider } from "react-redux";
-import { store } from "./app/store/config";
+import { storeConfig } from "./app/store/config";
+import { PersistGate } from "redux-persist/integration/react";
+import Sppinner from "app/components/Sppinner";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+    <Provider store={storeConfig.store}>
+      <PersistGate loading={<Sppinner />} persistor={storeConfig.persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
