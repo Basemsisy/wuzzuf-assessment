@@ -22,8 +22,8 @@ const Job: FunctionComponent<Props> = ({
     <div className={styles.Job}>
       <h4>{jobDetails?.job_title}</h4>
       <div className="grid-2-1">
-        <Sidebar type="job" data={relatedJobs?.related_job_titles} title="related jobs" />
         <RelatedWrapper type="skill" data={jobDetails?.skills} />
+        <Sidebar type="job" data={relatedJobs?.related_job_titles} title="related jobs" />
       </div>
     </div>
   );
