@@ -3,7 +3,11 @@
   padding: 37px 42px 23px;
   font-size: 18px;
   line-height: 25px;
-
+  margin-bottom: 20px;
+  flex: 1 0 40%;
+  @media (min-width: 500px) {
+    margin-right: 20px;
+  }
   h5 {
     margin-bottom: 16px;
   }
