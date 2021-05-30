@@ -16,6 +16,7 @@ const SearchBox: FunctionComponent<Props> = ({ }) => {
   const history = useHistory();
   const [inputValue, setInputValue] = useState<string>("");
   const [options, setOptions] = useState<any[] | null>(null);
+  const hideList = ['job', 'skill']
 
 
   const handleChange = (word: string) => {
@@ -39,6 +40,9 @@ const SearchBox: FunctionComponent<Props> = ({ }) => {
     []
   );
 
+  if (hideList.includes(history.location.pathname.split('/')[1])) {
+    return null
+  }
   return (
     <div className={styles.SearchBox}>
       <input

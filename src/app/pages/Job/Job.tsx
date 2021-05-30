@@ -39,13 +39,3 @@ const Job: FunctionComponent<Props> = ({
 };
 
 export default Job;
-
-// {
-//   data?.map((item, i) => (
-//     <li key={item.uuid}>
-//       <Link to={`/${type}/${item.uuid}`}>
-//         {type === 'job' ? item?.title : item.skill_name}
-//       </Link>
-//     </li>
-//   ))
-// }
