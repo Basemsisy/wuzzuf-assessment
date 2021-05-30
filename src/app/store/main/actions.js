@@ -45,3 +45,11 @@ export const getSkillRelatedSkills = (skillId) => ({
     url: `skills/${skillId}/related_skills`,
   },
 });
+
+export const getRecommendedJobs = (word) => ({
+  type: T.GET_RECOMMENDED_JOBS,
+  request: {
+    url: `jobs/autocomplete`,
+    params: { contains: word },
+  },
+});
