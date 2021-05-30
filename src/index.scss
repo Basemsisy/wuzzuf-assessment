@@ -1,6 +1,6 @@
 *,
-::before,
-::after {
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -34,15 +34,18 @@ a.active {
 .container {
   width: 90%;
   margin: auto;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-  @media (min-width: 501px) {
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+.grid-2-1 {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: start;
+  @media (min-width: 576px) {
+    flex-wrap: nowrap;
   }
-  grid-gap: 43px 33px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
 }
