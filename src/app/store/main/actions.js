@@ -4,7 +4,7 @@ export const getAllJobs = (params) => ({
   type: T.GET_ALL_JOBS,
   request: {
     url: "jobs",
-    params,
+    params: { limit: 12, ...params },
   },
 });
 
