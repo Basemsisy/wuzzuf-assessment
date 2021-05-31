@@ -30,7 +30,7 @@ const Skill: FunctionComponent<Props> = ({
       <h4>{data?.skill_name}</h4>
       <div className="grid-2-1">
         <RelatedWrapper
-          description={description.description}
+          description={description?.description}
           type="job"
           data={data?.jobs}
         />

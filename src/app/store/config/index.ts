@@ -15,6 +15,9 @@ const persistConfig = {
 
 const { requestsReducer, requestsMiddleware } = handleRequests({
   driver: createDriver(httpDriver),
+  onError: (error) => {
+    throw error.response.data.error;
+  },
 });
 
 const reducers = combineReducers({

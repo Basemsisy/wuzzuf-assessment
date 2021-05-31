@@ -13,12 +13,21 @@ const useAction = (action: any, params?: any, canUpdate: boolean = false) => {
     setState({ ...state, isLoading: true });
     try {
       const result = await dispatch(action(params));
-      setState({ ...state, isLoading: false, data: result.data });
-    } catch (error) {
-      setState({ ...state, error });
-    }
+      if (result.error) {
+        setState((prevState) => ({
+          ...prevState,
+          error: result.error,
+          isLoading: false,
+        }));
+      } else {
+        setState((prevState) => ({
+          ...prevState,
+          data: result.data,
+          isLoading: false,
+        }));
+      }
+    } catch (error) { }
   };
-
   useEffect(
     () => {
       fetchData();

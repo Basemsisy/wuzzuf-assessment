@@ -17,9 +17,9 @@ const RelatedWrapper: FunctionComponent<Props> = ({ type, data, description }) =
         <p>{description}</p>
       </>}
       <h5>related {type}s:</h5>
-      {data?.map((item: any, i) => (
+      {data?.length ? data.map((item: any, i) => (
         <RelatedCard key={i} type={type} data={item} />
-      ))}
+      )) : <div style={{ textAlign: 'center', textTransform: 'uppercase' }}>no related  {type}s found</div>}
     </div>
   );
 };

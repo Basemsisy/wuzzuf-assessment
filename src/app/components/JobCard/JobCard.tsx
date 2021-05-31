@@ -12,18 +12,26 @@ interface Props {
 }
 
 const JobCard: FunctionComponent<Props> = ({ jobDetails }) => {
-  const { isLoading, data } = useAction(getJobRelatedSkills, jobDetails.uuid);
+  const { isLoading, data, error } = useAction(
+    getJobRelatedSkills,
+    jobDetails.uuid,
+    true
+  );
 
   const renderSkills = () => {
-    return !isLoading
-      ? data?.skills
-        .slice(0, 6)
-        .map((skill: any) => (
-          <span key={skill.skill_uuid} className={styles.Tags__Item}>{skill.skill_name}</span>
-        ))
-      : Array(6)
+    if (isLoading) {
+      return Array(6)
         .fill(0)
         .map((_, i) => <span key={i} className={styles.Tags__Item}></span>);
+    } else {
+      return error
+        ? error.message
+        : data?.skills.slice(0, 6).map((skill: any) => (
+          <span key={skill.skill_uuid} className={styles.Tags__Item}>
+            {skill.skill_name}
+          </span>
+        ));
+    }
   };
   return (
     <div className={styles.JobCard}>

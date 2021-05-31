@@ -10,7 +10,13 @@ const Sidebar: FunctionComponent<Props> = ({ title, children }) => {
     <aside className={styles.Sidebar}>
       <h5>{title}:</h5>
       <ul>
-        {children}
+        {children ? (
+          children
+        ) : (
+          <div style={{ textAlign: "center", textTransform: "uppercase" }}>
+            no data found
+          </div>
+        )}
       </ul>
     </aside>
   );
