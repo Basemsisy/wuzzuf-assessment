@@ -6,8 +6,8 @@ import styles from "./JobCard.module.scss";
 
 interface Props {
   jobDetails: {
-    title: string;
     uuid: string;
+    normalized_job_title: string
   };
 }
 
@@ -35,7 +35,7 @@ const JobCard: FunctionComponent<Props> = ({ jobDetails }) => {
   };
   return (
     <div className={styles.JobCard}>
-      <h5>{jobDetails.title}</h5>
+      <h5>{jobDetails.normalized_job_title}</h5>
       <div className={styles.Tags}>
         <span className={styles.Tags__Title}>related skills:</span>
 
