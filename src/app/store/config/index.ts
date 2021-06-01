@@ -5,12 +5,14 @@ import { httpDriver } from "../../utils/httpDriver";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import mainReducer from "../main/reducer";
+import searchReducer from "../main/SearchReducer";
 import logger from "redux-logger";
 import { env } from "app/utils/env";
 
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["main"],
 };
 
 const { requestsReducer, requestsMiddleware } = handleRequests({
@@ -23,6 +25,7 @@ const { requestsReducer, requestsMiddleware } = handleRequests({
 const reducers = combineReducers({
   requests: requestsReducer,
   main: mainReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
