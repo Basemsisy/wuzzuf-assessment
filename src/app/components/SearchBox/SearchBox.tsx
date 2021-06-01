@@ -1,22 +1,29 @@
 import React, {
   FunctionComponent,
   useCallback,
+  useEffect,
   useState,
 } from "react";
 import styles from "./SearchBox.module.scss";
 import { getRecommendedJobs } from "app/store/main/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import debounce from "lodash.debounce";
+import { RootState } from "app/store/config";
 
 interface Props { }
 
-const SearchBox: FunctionComponent<Props> = ({ }) => {
+const SearchBox: FunctionComponent<Props> = () => {
   const dispatch: any = useDispatch();
   const history = useHistory();
-  const [inputValue, setInputValue] = useState<string>("");
-  const [options, setOptions] = useState<any[] | null>(null);
-  const hideList = ['job', 'skill']
+  const urlParams = new URLSearchParams(history.location.search);
+  const [inputValue, setInputValue] = useState<string>(
+    urlParams.get("query") || ""
+  );
+  const { searchJobs }: any = useSelector<RootState>((state) => state.main);
+  const [show, setShow] = useState(true);
+
+  const hideList = ["job", "skill"];
 
 
   const handleChange = (word: string) => {
@@ -26,12 +33,10 @@ const SearchBox: FunctionComponent<Props> = ({ }) => {
 
   const loadData = async (word: string) => {
     if (word.length >= 3) {
-      history.push({ pathname: '/search', search: `query=${word}` })
-      let response = await dispatch(getRecommendedJobs(word));
-      setOptions(response.data);
+      await dispatch(getRecommendedJobs(word));
+      history.push({ pathname: "/search", search: `query=${word}` });
     } else {
-      history.push('/')
-      setOptions(null);
+      history.push("/");
     }
   };
 
@@ -40,9 +45,21 @@ const SearchBox: FunctionComponent<Props> = ({ }) => {
     []
   );
 
-  if (hideList.includes(history.location.pathname.split('/')[1])) {
-    return null
-  }
+  const toggleSearchBox = () => {
+    if (hideList.includes(history.location.pathname.split("/")[1])) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  };
+  useEffect(() => {
+    history.listen(() => {
+      toggleSearchBox();
+    });
+  }, []);
+
+  if (!show) return null;
+
   return (
     <div className={styles.SearchBox}>
       <input
@@ -53,10 +70,8 @@ const SearchBox: FunctionComponent<Props> = ({ }) => {
         onChange={(e) => handleChange(e.target.value)}
       />
       <datalist id="jobs">
-        {options?.map((option) => (
-          <option
-            value={option.normalized_job_title}
-          >
+        {searchJobs?.map((option: any) => (
+          <option key={option.uuid} value={option.normalized_job_title}>
             {option.normalized_job_title}
           </option>
         ))}
